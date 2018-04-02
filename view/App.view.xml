@@ -1,6 +1,6 @@
 <core:View controllerName="sap.ui.demo.MockServer.controller.App" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns="sap.m">
-	<List headerText="{i18n>headerText}" id="list" items="{/Meetups}" noDataText="{i18n>noDataText}">
+	xmlns="sap.m">	
+	<List headerText="Upcoming Meetups" id="list1" items="{/FindUpcomingMeetups}" 	
 		<items>
 			<ObjectListItem number="{ path: 'EventDate', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'medium' } }" title="{Title}">
 				<attributes>

@@ -20,6 +20,25 @@ sap.ui.define([
 				bGenerateMissingMockData: true
 			});
 
+			var aRequests = oMockServer.getRequests();
+            aRequests.push({
+		    method: "GET",  path: new RegExp("FindUpcomingMeetups(.*)"), 
+		   
+            response: function(oXhr, sUrlParams) {
+    	        jQuery.sap.log.debug("Incoming request for FindUpcomingMeetups");
+    	        var today = new Date();
+	 	        today.setHours(0); // or today.toUTCString(0) due to timezone differences
+	 	        today.setMinutes(0);
+	 	        today.setSeconds(0);
+    	var oResponse = jQuery.sap.sjax({
+        	    url: "/Meetups?$filter=EventDate ge " + "/Date(" + today.getTime() + ")/"
+    	});
+    	oXhr.respondJSON(200, {}, JSON.stringify(oResponse.data));
+    	return true;
+    }
+});
+oMockServer.setRequests(aRequests);
+
 			// handling custom URL parameter step
 			var fnCustom = function(oEvent) {
 				var oXhr = oEvent.getParameter("oXhr");
