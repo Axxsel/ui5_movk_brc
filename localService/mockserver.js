@@ -16,10 +16,9 @@ sap.ui.define([
 			});
 			// simulate against the metadata and mock data
 			oMockServer.simulate("../localService/metadata.xml", {
-				sMockdataBaseUrl: "../localService/mockdata",
+				sMockdataBaseUrl: "/localService/mockdata",
 				bGenerateMissingMockData: true
 			});
-
 			var aRequests = oMockServer.getRequests();
             aRequests.push({
 		    method: "GET",  path: new RegExp("FindUpcomingMeetups(.*)"), 
